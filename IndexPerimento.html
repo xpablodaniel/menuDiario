@@ -6,15 +6,12 @@
     <title>Menú del día</title>
     <link rel="stylesheet" href="indexMenuPers.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  
-    
 </head>
 <body>
     <header>
         <div class="headImages">
             <div class="leftIma"><img src="sol.png" alt=""></div>
             <div class="rightIma"><img src="logoSuteba.png" alt=""></div>
-            
         </div>
         <h1>Menú del día</h1>
     </header>
@@ -30,7 +27,7 @@
             <select id="cena-select">
                 <!-- aquí se agregan las opciones de la cena con JavaScript -->
             </select>
-            <select id="cena-submenu" style="display: none;">
+            <select id="cena-submenu">
                 <!-- aquí se agregarán las opciones adicionales de la cena -->
             </select>
         </section>
@@ -39,18 +36,18 @@
             <select id="postre-select">
                 <!-- aquí se agregan las opciones de postre con JavaScript -->
             </select>
-            <select id="postre-submenu" style="display: none;">
+            <select id="postre-submenu">
                 <!-- aquí se agregarán las opciones adicionales del postre -->
             </select>
         </section>
     </main>
     <button class="print-button" onclick="window.print()">
         <span class="material-symbols-outlined"> print </span>   
-     </button>
+    </button>
     <footer>
         <!-- <p>© 2023 Menú del día. Todos los derechos reservados.</p> -->
     </footer>
-    <script src="indexMenu.js"></script>
+
     <script>
         const almuerzoMenu = [
           "Empanadas Criollas", "Ensalada Capresse", "Ensalada Lucho’s Cheff", "Tortillin de Papa", "Papas Cheddar y Puerro", "Tortilla Española con Ensaladilla",
@@ -58,33 +55,42 @@
         ];
         almuerzoMenu.push("Crunch de Pollo con Ali - Oli");
         
-        const cenaMenu = [
-          "Muslo Braseado al Limón", "Milanesa de Peceto a la Suiza", "Ravioli de Espinaca Mediterráneo",
-          "Suprema de Pollo", "Pechugas al Verdeo", "Tallarines Mediterráneo",
-          "Muslo al Ajillo", "Lasagna de Carne y Verduras", "Suprema Mariland", "Carré de Cerdo a la Riojana"
-        ];
-        cenaMenu.push("Carne al Horno Braseada");
         
-        const cenaSubMenu = {
-          "Muslo Braseado al Limón": ["con Ensalada del Chef", "con Arroz Pilaf", "con Verduras Hervidas"],
-          "Suprema de Pollo": ["con Ensalada del Chef", "con Arroz Pilaf", "con Verduras Hervidas"],
-          "Muslo al Ajillo": ["con Puré de Batatas", "con Ensalada del Chef"],
-          "Carré de Cerdo a la Riojana": ["con Puré de Batatas", "con Ensalada del Chef"]
-        };
+        
+        const cenaMenu = [
+    "Muslo Braseado al Limón", "Milanesa de Peceto", "Ravioli de Espinaca Mediterráneo",
+    "Suprema de Pollo", "Pechugas al Verdeo", "Tallarines Mediterráneo",
+    "Muslo al Ajillo", "Lasagna de Carne y Verduras", "Suprema Mariland", "Carré de Cerdo a la Riojana"
+  ];
+  cenaMenu.push("Carne al Horno Braseada");
+        
+        
+        
+        const cenaSubMenu = [
+          "con Ensalada del Chef", "con Puré de Batatas",
+          "con Arroz Pilaf", "a la Suiza"
+        ];
+        
+        cenaSubMenu.push("~.~");
         
         const postreMenu = [
-          "Flan de Naranja con Dulce de Leche", "Helado de Americana con Praline de Frutos Secos",
-          "Budín de Pan con Crema Montada", "Bombón con Salsa de Frutos Rojos", "Brownie de Chocolate", "Ensalada de Frutas con Crema", "Mousse de Chocolate", "Crepe de Frutas con Crema", "Flan Casero Mixto",
-          "Crumble de Manzana y Helado"
+          "Flan de Naranja", "Helado de Americana",
+          "Budín de Pan", "Bombón Suizo", "Brownie de Chocolate", "Ensalada de Frutas", "Mousse de Chocolate", "Crepe de Frutas", "Flan Casero"
         ];
-        postreMenu.push("Manzanas Asadas con Crema");
+        postreMenu.push("Crumble de Manzana");
         
-        const postreSubMenu = {
-          "Flan de Naranja con Dulce de Leche": ["con Crema Batida", "con Salsa de Caramelo"],
-          "Helado de Americana con Praline de Frutos Secos": ["con Crema Batida", "con Salsa de Chocolate"],
-          "Budín de Pan con Crema Montada": ["con Crema Batida", "con Salsa de Frutos Rojos"],
-          "Brownie de Chocolate": ["con Helado de Vainilla", "con Salsa de Chocolate"]
-        };
+        const postreSubMenu = [
+          "con Dulce de Leche", "con Praline de Frutos Secos",
+          "con Crema Montada", "con Salsa de Frutos Rojos", "de Chocolate", "Mixto", "con Helado"
+        ];
+        
+        postreSubMenu.push("~.~");
+        
+        almuerzoMenu.sort();
+  	cenaMenu.sort();
+  	cenaSubMenu.sort();
+  	postreMenu.sort();
+  	postreSubMenu.sort();
         
         const almuerzoSelect = document.getElementById('almuerzo-select');
         const cenaSelect = document.getElementById('cena-select');
@@ -98,27 +104,15 @@
           select.appendChild(option);
         }
         
-        function addToSubMenu(item, select) {
-          let option = document.createElement('option');
-          option.textContent = item;
-          select.appendChild(option);
-        }
-        
         almuerzoMenu.forEach(item => addToSelect(item, almuerzoSelect));
         
-        cenaMenu.forEach(item => {
-          addToSelect(item, cenaSelect);
-          if (cenaSubMenu[item]) {
-            cenaSubMenu[item].forEach(subitem => addToSubMenu(subitem, cenaSubMenuSelect));
-          }
-        });
+        cenaMenu.forEach(item => addToSelect(item, cenaSelect));
+        cenaSubMenu.forEach(item => addToSelect(item, cenaSubMenuSelect));
         
-        postreMenu.forEach(item => {
-          addToSelect(item, postreSelect);
-          if (postreSubMenu[item]) {
-            postreSubMenu[item].forEach(subitem => addToSubMenu(subitem, postreSubMenuSelect));
-          }
-        });
+        postreMenu.forEach(item => addToSelect(item, postreSelect));
+        
+        postreSubMenu.forEach(item => addToSelect(item, postreSubMenuSelect));
     </script>
 </body>
 </html>
+

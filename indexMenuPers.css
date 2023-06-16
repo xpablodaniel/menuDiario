@@ -29,7 +29,7 @@ header {
     color: #262626;
     padding: 20px;
     text-align: center;
-    margin-top: 70px;
+    margin-top: 20px;
 }
 
 main {
@@ -131,6 +131,6 @@ button {
 
 /* Estilos para agrandar la fuente del documento */
 body :not(h1) {
-    font-size: 30px;
+    font-size: 33px;
 }
 
