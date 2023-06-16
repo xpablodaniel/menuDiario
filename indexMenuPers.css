@@ -46,6 +46,7 @@ h1 {
     color: rgb(0, 0, 0);
     margin-bottom: 20px;
     text-transform: capitalize;
+    text-decoration: underline;
 }
 
 h2 {
