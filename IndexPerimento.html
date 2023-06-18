@@ -1,118 +1,53 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menú del día</title>
-    <link rel="stylesheet" href="indexMenuPers.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <title>Manipulación de DOM con datos de archivo externo</title>
+  <script>
+    // Función para cargar y procesar el archivo de datos
+    function cargarDatos() {
+      var archivo = document.getElementById("archivo").files[0];
+      var lector = new FileReader();
+
+      lector.onload = function(e) {
+        var contenido = e.target.result;
+        procesarDatos(contenido);
+      }
+
+      lector.readAsText(archivo);
+    }
+
+    // Función para procesar los datos del archivo
+    function procesarDatos(datos) {
+      var lineas = datos.split("\n");
+      var campos = document.getElementsByClassName("campo");
+
+      for (var i = 0; i < campos.length; i++) {
+        if (lineas[i]) {
+          var valor = lineas[i].trim();
+          campos[i].value = valor;
+        }
+      }
+    }
+  </script>
 </head>
 <body>
-    <header>
-        <div class="headImages">
-            <div class="leftIma"><img src="sol.png" alt=""></div>
-            <div class="rightIma"><img src="logoSuteba.png" alt=""></div>
-        </div>
-        <h1>Menú del día</h1>
-    </header>
-    <main>
-        <section>
-            <h2>Entrada</h2>
-            <select id="almuerzo-select">
-                <!-- aquí se agregan las opciones del almuerzo con JavaScript -->
-            </select>
-        </section>
-        <section>
-            <h2>Plato Principal</h2>
-            <select id="cena-select">
-                <!-- aquí se agregan las opciones de la cena con JavaScript -->
-            </select>
-            <select id="cena-submenu">
-                <!-- aquí se agregarán las opciones adicionales de la cena -->
-            </select>
-        </section>
-        <section>
-            <h2>Postre</h2>
-            <select id="postre-select">
-                <!-- aquí se agregan las opciones de postre con JavaScript -->
-            </select>
-            <select id="postre-submenu">
-                <!-- aquí se agregarán las opciones adicionales del postre -->
-            </select>
-        </section>
-    </main>
-    <button class="print-button" onclick="window.print()">
-        <span class="material-symbols-outlined"> print </span>   
-    </button>
-    <footer>
-        <!-- <p>© 2023 Menú del día. Todos los derechos reservados.</p> -->
-    </footer>
+  <h1>Formulario</h1>
+  <input type="file" id="archivo" accept=".txt, .csv" />
+  <button onclick="cargarDatos()">Cargar datos</button>
 
-    <script>
-        const almuerzoMenu = [
-          "Empanadas Criollas", "Ensalada Capresse", "Ensalada Lucho’s Cheff", "Tortillin de Papa", "Papas Cheddar y Puerro", "Tortilla Española con Ensaladilla",
-          "Papines Rellenos", "Bruschetta Mediterránea", "Ensalada Caesar", "Crujientes de Muzzarella", "Quesadillas con Pico de Gallo", "Papas Cheddar y Panceta"
-        ];
-        almuerzoMenu.push("Crunch de Pollo con Ali - Oli");
-        
-        
-        
-        const cenaMenu = [
-    "Muslo Braseado al Limón", "Milanesa de Peceto", "Ravioli de Espinaca Mediterráneo",
-    "Suprema de Pollo", "Pechugas al Verdeo", "Tallarines Mediterráneo",
-    "Muslo al Ajillo", "Lasagna de Carne y Verduras", "Suprema Mariland", "Carré de Cerdo a la Riojana"
-  ];
-  cenaMenu.push("Carne al Horno Braseada");
-        
-        
-        
-        const cenaSubMenu = [
-          "con Ensalada del Chef", "con Puré de Batatas",
-          "con Arroz Pilaf", "a la Suiza"
-        ];
-        
-        cenaSubMenu.push("~.~");
-        
-        const postreMenu = [
-          "Flan de Naranja", "Helado de Americana",
-          "Budín de Pan", "Bombón Suizo", "Brownie de Chocolate", "Ensalada de Frutas", "Mousse de Chocolate", "Crepe de Frutas", "Flan Casero"
-        ];
-        postreMenu.push("Crumble de Manzana");
-        
-        const postreSubMenu = [
-          "con Dulce de Leche", "con Praline de Frutos Secos",
-          "con Crema Montada", "con Salsa de Frutos Rojos", "de Chocolate", "Mixto", "con Helado"
-        ];
-        
-        postreSubMenu.push("~.~");
-        
-        almuerzoMenu.sort();
-  	cenaMenu.sort();
-  	cenaSubMenu.sort();
-  	postreMenu.sort();
-  	postreSubMenu.sort();
-        
-        const almuerzoSelect = document.getElementById('almuerzo-select');
-        const cenaSelect = document.getElementById('cena-select');
-        const cenaSubMenuSelect = document.getElementById('cena-submenu');
-        const postreSelect = document.getElementById('postre-select');
-        const postreSubMenuSelect = document.getElementById('postre-submenu');
-        
-        function addToSelect(item, select) {
-          let option = document.createElement('option');
-          option.textContent = item;
-          select.appendChild(option);
-        }
-        
-        almuerzoMenu.forEach(item => addToSelect(item, almuerzoSelect));
-        
-        cenaMenu.forEach(item => addToSelect(item, cenaSelect));
-        cenaSubMenu.forEach(item => addToSelect(item, cenaSubMenuSelect));
-        
-        postreMenu.forEach(item => addToSelect(item, postreSelect));
-        
-        postreSubMenu.forEach(item => addToSelect(item, postreSubMenuSelect));
-    </script>
+  <form>
+    <label for="campo1">Campo 1:</label>
+    <input type="text" id="campo1" class="campo" />
+
+    <label for="campo2">Campo 2:</label>
+    <input type="text" id="campo2" class="campo" />
+
+    <label for="campo3">Campo 3:</label>
+    <input type="text" id="campo3" class="campo" />
+  </form>
 </body>
 </html>
+
+
+
 
