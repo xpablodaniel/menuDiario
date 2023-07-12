@@ -117,8 +117,8 @@ button {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .leftIma img {
@@ -131,6 +131,6 @@ button {
 
 /* Estilos para agrandar la fuente del documento */
 body :not(h1) {
-    font-size: 33px;
+    font-size: 32px;
 }
 
