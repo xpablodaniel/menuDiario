@@ -30,6 +30,27 @@ Este proyecto es una aplicación web simple que permite visualizar y seleccionar
 - ✅ Diseño adaptado para impresión en papel.
 - ✅ Estilo moderno y accesible, con tipografía clara y bloques de contenido bien definidos.
 
+## ✨ Mejoras Recientes: Carga de Menú Dinámica (v1.1)
+
+En esta versión se ha migrado la fuente de datos de los menús desde arrays definidos directamente en el archivo JavaScript (`indexMenu.js`) a un archivo JSON externo (`menus.json`).
+
+### Beneficios Clave:
+
+- **Separación de Datos y Lógica:** Los datos del menú ahora están completamente separados del código que los procesa, facilitando futuras actualizaciones.
+- **Mayor Flexibilidad:** Permite modificar el menú diario simplemente editando el archivo `menus.json`, sin necesidad de alterar el código JavaScript o redeployar la aplicación si solo cambian los platos.
+- **Preparación para Futuras Funcionalidades:** Establece las bases para cargar menús desde otras fuentes (como una API o una base de datos) con cambios mínimos en el front-end.
+
+### Archivos Modificados:
+
+- `menus.json`: Nuevo archivo que contiene la estructura completa del menú (Entrada, Plato Principal, Postre y submenús) en formato JSON.
+- `indexMenu.js`: Modificado para:
+    - Eliminar los arrays de menús hardcodeados.
+    - Implementar la carga asíncrona del archivo `menus.json` utilizando la API `Workspace`.
+    - Procesar los datos JSON para poblar dinálogos selectores de menú correspondientes.
+    - Incluir manejo básico de errores durante la carga del archivo.
+
+Este cambio mejora significativamente la agilidad para gestionar y actualizar el contenido del menú.
+
 ## 🖨️ Vista de Impresión
 
 Incluye una hoja de estilos optimizada para impresión (márgenes, ocultamiento de elementos no necesarios, ajuste de fuentes y campos de selección).
