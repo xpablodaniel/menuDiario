@@ -19,30 +19,37 @@
     <main>
         <section>
             <h2>Entrada</h2>
-            <select id="almuerzo-select">
-                <!-- aquí se agregan las opciones del almuerzo con JavaScript -->
-            </select>
-            <select id="almuerzo-submenu">
-                <!-- aquí se agregarán las opciones adicionales del almuerzo -->
-            </select>
+            <label for="entrada-select" class="sr-only">Seleccione la entrada:</label>
+            <select id="entrada-select">
+                </select>
+            <div id="entrada-submenu-container" style="display:none;">
+
+                <label for="entrada-submenu" class="sr-only">Submenú de entrada:</label>
+                <select id="entrada-submenu">
+                    </select>
+            </div>
         </section>
         <section>
             <h2>Plato Principal</h2>
-            <select id="cena-select">
-                <!-- aquí se agregan las opciones de la cena con JavaScript -->
-            </select>
-            <select id="cena-submenu">
-                <!-- aquí se agregarán las opciones adicionales de la cena -->
-            </select>
+             <label for="plato-principal-select" class="sr-only">Seleccione el plato principal:</label>
+            <select id="plato-principal-select">
+                </select>
+            <div id="plato-principal-submenu-container" style="display:none;">
+                <label for="plato-principal-submenu" class="sr-only">Submenú del plato principal:</label>
+                <select id="plato-principal-submenu">
+                    </select>
+            </div>
         </section>
         <section>
             <h2>Postre</h2>
+            <label for="postre-select" class="sr-only">Seleccione el postre:</label>
             <select id="postre-select">
-                <!-- aquí se agregan las opciones de postre con JavaScript -->
-            </select>
-            <select id="postre-submenu">
-                <!-- aquí se agregarán las opciones adicionales del postre -->
-            </select>
+                </select>
+            <div id="postre-submenu-container" style="display:none;">
+                <label for="postre-submenu" class="sr-only">Submenú del postre:</label>
+                <select id="postre-submenu">
+                    </select>
+            </div>
         </section>
     </main>
     <button class="print-button" onclick="window.print()">
@@ -50,8 +57,7 @@
     </button>
     
     <footer>
-        <!-- <p>© 2023 Menú del día. Todos los derechos reservados.</p> -->
-    </footer>
+        </footer>
     <script src="indexMenu.js"></script>
 </body>
 </html>

@@ -4,9 +4,7 @@
         margin: 7mm;
     }
 
-    @top-center {
-        content: none;
-    }
+    
 }
 
 body {
@@ -60,13 +58,15 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    width: 80%; /* Ajusta el ancho del select */
+    max-width: 400px; /* Establece un máximo ancho */
 }
 
 @media print {
     select {
-        max-width: 100%; /* Limita el ancho del menú desplegable */
-        white-space: normal; /* Evita los saltos de línea automáticos */
-        overflow-x: auto; /* Permite el desplazamiento horizontal en caso de exceder el ancho máximo */
+        max-width: 100%;
+        white-space: normal;
+        overflow-x: auto;
     }
 }
 
@@ -135,3 +135,26 @@ body :not(h1) {
     font-size: 32px;
 }
 
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+    font-weight: bold;
+    text-align: center;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.has-submenu::after {
+    content: " ▼"; /* Triángulo hacia abajo */
+}
